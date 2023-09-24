@@ -48,9 +48,9 @@ const Home = () => {
                                     <Link to={`/read/${user.id}`} className='btn btn-sm btn-outline-dark'>
                                         <AiFillFolderOpen />
                                     </Link>
-                                    <button className='btn btn-sm btn-outline-dark'>
+                                    <Link to={`/update/${user.id}`} className='btn btn-sm btn-outline-dark'>
                                         <AiFillEdit />
-                                    </button>
+                                    </Link>
                                     <button className='btn btn-sm btn-outline-dark'>
                                         <AiFillDelete />
                                     </button>
