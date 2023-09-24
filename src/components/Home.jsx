@@ -2,18 +2,34 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import {AiFillEdit, AiFillDelete, AiFillFolderOpen} from 'react-icons/ai'
 import {BiSolidUserPlus} from 'react-icons/bi'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const USERS_API = 'https://apidata-zkgz.onrender.com/users';
 
 const Home = () => {
 
     const [usersData, setUsersData] = useState([]);
+
+    const navigate = useNavigate();
+
     useEffect(() => {
         axios.get(USERS_API)
         .then(res => setUsersData(res.data))
         .catch(error => console.log(error.message))
     }, []);
+
+    const handleDelete = (id) => {
+        const confirm = window.confirm("would you like to delete?");
+        if(confirm){
+            axios.delete(USERS_API + "/" + id)
+            .then(res => {
+                location.reload();
+                navigate('/');
+                console.log(res)
+            })
+            .catch(error => console.log(error.message));
+        }
+    }
 
   return (
     <div className='d-flex flex-column justify-content-center align-items-center bg-light vh-100'>
@@ -51,8 +67,10 @@ const Home = () => {
                                     <Link to={`/update/${user.id}`} className='btn btn-sm btn-outline-dark'>
                                         <AiFillEdit />
                                     </Link>
-                                    <button className='btn btn-sm btn-outline-dark'>
-                                        <AiFillDelete />
+                                    <button 
+                                        className='btn btn-sm btn-outline-dark'
+                                        onClick={() => handleDelete(user.id)}
+                                    ><AiFillDelete />
                                     </button>
                                 </td>
                             </tr>
