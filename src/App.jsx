@@ -5,7 +5,6 @@ import Create from './components/Create';
 import Update from './components/Update';
 import Read from './components/Read';
 
-const USERS_API = 'https://apidata-zkgz.onrender.com/users';
 
 const App = () => {
   return (
