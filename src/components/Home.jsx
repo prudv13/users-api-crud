@@ -45,9 +45,9 @@ const Home = () => {
                                 <td>{user.email}</td>
                                 <td>{user.username}</td>
                                 <td className='d-flex gap-2'>
-                                    <button className='btn btn-sm btn-outline-dark'>
+                                    <Link to={`/read/${user.id}`} className='btn btn-sm btn-outline-dark'>
                                         <AiFillFolderOpen />
-                                    </button>
+                                    </Link>
                                     <button className='btn btn-sm btn-outline-dark'>
                                         <AiFillEdit />
                                     </button>
